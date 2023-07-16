@@ -16,6 +16,8 @@ class Card:
     def get_visual(self):
         return self.visual
 
+    def get_combo(self):
+        return self.sign + self.color
     def create_visual(self):
         suit_symbols = {
             'T': '♦',

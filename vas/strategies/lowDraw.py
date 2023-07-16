@@ -4,11 +4,11 @@ from spade.behaviour import CyclicBehaviour
 from card import Card
 from spade.agent import Agent
 
-class HighDrawRepeat(Agent):
+class LowDraw(Agent):
     def __init__(self):
-        self.strategy = self.HighDrawRepeatBeh()
+        self.strategy = self.LowDrawBeh()
 
-    class HighDrawRepeatBeh(CyclicBehaviour):
+    class LowDrawBeh(CyclicBehaviour):
 
         def __init__(self, name, password, score, cards, taken_cards):
             self.name = name
@@ -16,7 +16,7 @@ class HighDrawRepeat(Agent):
             self.score = score
             self.cards = cards
             self.taken_cards = taken_cards
-            
+
         async def on_start(self):
             print('High draw')
         
@@ -99,5 +99,5 @@ class HighDrawRepeat(Agent):
 
     async def setup(self):
         print('dodano ponasanje')
-        ponasanje = self.HighDrawRepeatBeh()
+        ponasanje = self.LowDrawBeh()
         self.add_behaviour(ponasanje)
