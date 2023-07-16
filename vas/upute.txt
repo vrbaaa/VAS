@@ -1,0 +1,4 @@
+1. Pokrenuti lokalni XMPP server
+2. Aktivirati mogućnost automatske registracije agenta (conda activate)
+3. Pokrenuti aplikaciju naredbom python3 match.py
+

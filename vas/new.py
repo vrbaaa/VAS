@@ -9,7 +9,7 @@ from newAgent import GameAgenttt, GameAgentt
 from spade.behaviour import TimeoutBehaviour, CyclicBehaviour, PeriodicBehaviour
 import random
 from spade.agent import Agent
-from strategies.optimalDraw import OptimalDraw
+from strategies.throwBigAtEnd import ThrowBigAtEnd
 
 from strategies.randomDraw import RandomDraw
 

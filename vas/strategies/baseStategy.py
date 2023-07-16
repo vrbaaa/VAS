@@ -22,4 +22,6 @@ class BaseStategy:
     
     def add_points(self, points):
         self.score += points
+
+    
         

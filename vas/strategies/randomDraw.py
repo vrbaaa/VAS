@@ -12,12 +12,15 @@ class RandomDraw(BaseStategy, CyclicBehaviour):
     async def on_start(self):
         print('Random draw')
     
+    def set_cards(self, cards):
+        self.cards = cards
+
     async def run(self):
         message = await self.receive(timeout=10)
         # print('mess', message)
         if message:
             currPlayer = message.metadata.get("currPlayer")
-            if currPlayer=="random@localhost":
+            if currPlayer=="randomdraw@localhost":
                 if message.body == "prviPotez" :
                     sendTo = message.metadata.get("sendTo")
                     print(f'{currPlayer} Karte  {len(self.cards)}')
@@ -33,7 +36,8 @@ class RandomDraw(BaseStategy, CyclicBehaviour):
                                   "cardScore": str(card.get_score()), "cardColor": card.get_color()}
                     )
                     await self.send(msg)
-                if message.body == "igraj": 
+                if message.body == "igraj":
+                    print('dobio sam poruku')
                     currPlayer = message.metadata.get("currPlayer")
                     sendTo = message.metadata.get("sendTo")
                     # print(f'{currPlayer} Karte  {len(self.cards)}')
@@ -61,6 +65,46 @@ class RandomDraw(BaseStategy, CyclicBehaviour):
                         )
                         await self.send(msg)
             
+                if message.body == "ponovi":
+                        print("primam ponavljanje")
+                        score = int(message.metadata.get("cardScore"))
+                        color = message.metadata.get("cardColor")
+                        sign = message.metadata.get("cardSign")
+                        opponent_card = Card(score, color, sign)
+                        filtered_cards = list(filter(lambda x: x.get_sign() == opponent_card.get_sign() or x.get_sign() == '7', self.cards))
+                        if len(filtered_cards) == 0:
+                            print("šaljem da nemami istu")
+                            msg = spade.message.Message(
+                            to="avrb3@localhost",
+                            body="neponavljam",     
+                            sender=currPlayer,
+                            )
+                            await self.send(msg)
+                        else:
+                            #odluči jel ponavljaš ili ne
+                            random_number = random.randint(1, 2)
+                            if random_number == 1:
+                                randic = random.randint(0,len(filtered_cards)-1)
+                                duplicate = filtered_cards[randic]
+                                index = next((i for i, x in enumerate(self.cards) if x.get_combo() == duplicate.get_combo()), -1)
+                                card = self.cards[index]
+                                self.cards.pop(index)
+                                msg = spade.message.Message(
+                                        to="avrb3@localhost",
+                                        body="ponavljam",     
+                                        sender=currPlayer,
+                                        metadata={"card": card.get_visual(), "cardNum": str(len(self.cards)), "cardNumber": card.get_sign(), "cardScore": str(card.get_score()), "cardColor": card.get_color()}
+                                    )
+                                await self.send(msg)
+                            else:
+                                print("šaljem da necu ponavljati")
+                                msg = spade.message.Message(
+                                to="avrb3@localhost",
+                                body="neponavljam",     
+                                sender=currPlayer,
+                                )
+                                await self.send(msg)
+
                 if message.body == "uzmi":
                     score = int(message.metadata.get("cardScore"))
                     color = message.metadata.get("cardColor")

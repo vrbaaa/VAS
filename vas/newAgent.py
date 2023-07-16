@@ -1,8 +1,8 @@
 from spade.agent import Agent
 from strategies.baseStategy import BaseStategy
-from strategies.highDrawNoRepeat import HighDrawNoRepeat
+from strategies.throwBigAtEndTakeAll import HighDrawNoRepeat
 from player import Player
-from strategies.highDrawRepeat import HighDrawRepeat
+from strategies.throwBigAtStartTakeAll import HighDrawRepeat
 from strategies.randomDraw import RandomDraw
 from spade.behaviour import CyclicBehaviour
 

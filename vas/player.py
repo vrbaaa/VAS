@@ -1,11 +1,12 @@
 class Player:
-    def __init__(self, name, password, score, cards, taken_cards, strategy):
+    def __init__(self, name, password, score, cards, taken_cards, strategy, rounds):
         self.name = name
         self.password = password
         self.score = score
         self.cards = cards
         self.taken_cards = taken_cards
         self.strategy = strategy
+        self.rounds = rounds
 
     def get_name(self): 
         return self.name
