@@ -1,8 +1,6 @@
 igrac1,igrac2,bodovi1,bodovi2,ideZa,igraoPrvi
 randomdraw@localhost,throwbigatend@localhost,30,60,1,randomdraw@localhost
-,,,,,
-,,,,,
-throwbigatendtakeall@localhost,randomdraw@localhost,80,70,1,throwbigatendtakeall@localhost
+throwbigatendtakeall@localhost,randomdraw@localhost,20,70,1,throwbigatendtakeall@localhost
 throwbigatendtakeall@localhost,randomdraw@localhost,40,50,1,throwbigatendtakeall@localhost
 throwbigatstarttakeall@localhost,throwbigatstart@localhost,30,60,1,throwbigatstarttakeall@localhost
 randomdraw@localhost,throwbigatstart@localhost,90,0,2,randomdraw@localhost
